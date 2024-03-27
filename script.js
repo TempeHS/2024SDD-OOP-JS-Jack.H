@@ -209,7 +209,7 @@ function newGame() {
 }
 newGame();*/
 
-class EnemyFactory {
+/*class EnemyFactory {
     constructor() {
         this.Flying = class {
             constructor(name) {
@@ -219,21 +219,20 @@ class EnemyFactory {
                 console.log(this.name + " is flying");
             }
         }
-        this.Swimming = class {
-            constructor(name) {
-                this.name = name;
-            }
-            swim() {
-                console.log(this.name + " is swimming");
-            }
-        }
     }
     generateFlyingEnemy(naming) {
         return new this.Flying(naming);
     }
-    generateSwimmingEnemy(naming) {
-        return new this.Swimming(naming)
+}
+
+EnemyFactory.generateSwimmingEnemy = function(name) {
+    class Swimming {
+        name = name;
+        swim() {
+            console.log(this.name + " is swimming");
+        }
     }
+    return new Swimming(name)
 }
 
 const factory = new EnemyFactory();
@@ -241,6 +240,25 @@ const flying = factory.generateFlyingEnemy("Batman");
 console.log(flying);
 flying.fly();
 
-const swimming = factory.generateSwimmingEnemy("Aquaman");
+const swimming = EnemyFactory.generateSwimmingEnemy("Aquaman");
 console.log(swimming);
-swimming.swim();
+swimming.swim();*/
+
+class Player {
+    constructor(name, hp, mp, items) {
+        this.name = name;
+        this.hp = hp;
+        this.mp = mp;
+        this.items = items;
+    }
+}
+
+class Warrior extends Player {
+    constructor(name, hp, mp, items, shield) {
+        super(name, hp, mp, items);
+        this.shield = shield;
+    }
+}
+
+const barbarian = new Warrior("Greg", 50, 0, ["Sword", "Potion"], "Metal Shield");
+console.log(barbarian);
