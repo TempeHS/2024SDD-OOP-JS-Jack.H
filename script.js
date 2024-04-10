@@ -244,7 +244,7 @@ const swimming = EnemyFactory.generateSwimmingEnemy("Aquaman");
 console.log(swimming);
 swimming.swim();*/
 
-class Player {
+/*class Player {
     constructor(name, hp, mp, items) {
         this.name = name;
         this.hp = hp;
@@ -261,4 +261,68 @@ class Warrior extends Player {
 }
 
 const barbarian = new Warrior("Greg", 50, 0, ["Sword", "Potion"], "Metal Shield");
-console.log(barbarian);
+console.log(barbarian);*/
+
+
+/*class Vehicle {
+    constructor(name, maxSpeed) {
+        this.name = name;
+        this.maxSpeed = maxSpeed;
+    }
+    getMaxSpeed() {
+        return this.maxSpeed;
+    }
+}
+
+class Spaceship extends Vehicle {
+    constructor(name, maxSpeed, numRocketEngines) {
+        super(name, maxSpeed);
+        this.numRocketEngines = numRocketEngines;
+    }
+}
+
+const spaceship = new Spaceship("Enterprise", 1000, 2);
+console.log(spaceship.getMaxSpeed());
+console.log(spaceship.numRocketEngines);*/
+
+class Shape {
+    constructor(coulor) {
+        this.coulor = "Transparent";
+        this.coulor = coulor;
+        this.type = "shape";
+    }
+    describe() {
+        console.log("A " + this.coulor + " " + this.type);
+    }
+}
+
+class Square extends Shape {
+    constructor(coulor, sideLength) {
+        super(coulor);
+        this.type = "square";
+        this.sideLength = sideLength;
+    }
+    area() {
+        return(this.sideLength^2);
+    }
+}
+
+class Rectangle extends Shape {
+    constructor(coulor, width, height) {
+        super(coulor);
+        this.type = "rectangle";
+        this.width = width;
+        this.height = height;
+    }
+    area() {
+        return(this.width * this.height);
+    }
+}
+
+const square = new Square("blue", 5);
+const rectangle = new Rectangle("red", 5, 6);
+console.log(square.area());
+console.log(rectangle.area());
+for (const Shape of [square, rectangle]) {
+    Shape.describe();
+}
