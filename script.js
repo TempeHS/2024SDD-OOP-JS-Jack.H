@@ -285,9 +285,8 @@ const spaceship = new Spaceship("Enterprise", 1000, 2);
 console.log(spaceship.getMaxSpeed());
 console.log(spaceship.numRocketEngines);*/
 
-class Shape {
-    constructor(coulor) {
-        this.coulor = "Transparent";
+/*class Shape {
+    constructor(coulor = "Transparent") {
         this.coulor = coulor;
         this.type = "shape";
     }
@@ -303,7 +302,7 @@ class Square extends Shape {
         this.sideLength = sideLength;
     }
     area() {
-        return(this.sideLength^2);
+        return(this.sideLength**2);
     }
 }
 
@@ -319,10 +318,104 @@ class Rectangle extends Shape {
     }
 }
 
+class Circle extends Shape {
+    constructor(coulor, radius) {
+        super(coulor);
+        this.type = "circle";
+        this.radius = radius;
+    }
+    area() {
+        return(Math.PI * this.radius**2);
+    }
+    describe() {
+        console.log("A round and awesome " + this.coulor + " " + this.type);
+    }
+}
+
 const square = new Square("blue", 5);
 const rectangle = new Rectangle("red", 5, 6);
+const circle = new Circle("green", 3);
 console.log(square.area());
 console.log(rectangle.area());
-for (const Shape of [square, rectangle]) {
+console.log(circle.area());
+for (const Shape of [square, rectangle, circle]) {
     Shape.describe();
+}*/
+
+/*class Enemy {
+    constructor(positionX, positionY, direction, speed, fireRate, sprite) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.direction = direction;
+        this.speed = speed;
+        this.fireRate = fireRate;
+        this.fireCount = fireRate;
+        this.id = enemies.length - 1;
+        this.sprite = sprite;
+    }
+    update() {
+        this.positionX += this.speed * this.direction;
+        if ((this.positionX == screenX && this.direction == 1) || (this.positionX == 0 && this.direction == -1)) {
+            this.direction *= -1;
+            this.positionY += 2;
+        }
+        this.fireCount--;
+        if (this.fireCount == 0) {
+            this.fireCount = this.fireRate;
+            bullets[bullets.length] = new Bullet(1, positionX, positionY);
+        }
+    }
 }
+
+class Boss extends Enemy {
+    constructor (positionX, positionY, direction, speed, fireRate, sprite) {
+        super(positionX, positionY, direction, speed, fireRate, fireCount, sprite);
+    }
+    defeat() {
+        level++;
+        resetShelter();
+        clearEnemies();
+    }
+}
+
+class Drop extends Enemy {
+     constructor (positionX, positionY, direction, speed, fireRate, sprite) {
+        super(positionX, positionY, direction, speed, fireRate, sprite);
+    }
+    update() {
+        this.positionX += this.speed * this.direction;
+        if ((this.positionX == screenX && this.direction == 1) || (this.positionX == 0 && this.direction == -1)) {
+            this.direction *= -1;
+            this.positionY += 2;
+        } else if (this.direction == 0) {
+            this.positionY += 3;
+        }
+        this.fireRate--;
+        if (this.fireRate == 0) {
+            this.direction = 0;
+        }
+    }
+}*/
+
+class FancyArray extends Array {
+    mapWithLogging(callback) {
+        let i = 0;
+        for(const item of this) {
+            const mappedItem = callback(item, i);
+            console.log("Current: " + item + ", After Callback: " + mappedItem);
+            this[i] = mappedItem;
+            i++;
+        }
+    }
+}
+
+const arr = new FancyArray();
+console.log(arr);
+arr.push(1);
+arr.push(2);
+arr.push(3);
+
+const mapped = arr.mapWithLogging((item, i) => {
+    return (item + i);
+});
+console.log(arr);
