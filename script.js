@@ -397,7 +397,7 @@ class Drop extends Enemy {
     }
 }*/
 
-class FancyArray extends Array {
+/*class FancyArray extends Array {
     mapWithLogging(callback) {
         let i = 0;
         for(const item of this) {
@@ -418,4 +418,38 @@ arr.push(3);
 const mapped = arr.mapWithLogging((item, i) => {
     return (item + i);
 });
-console.log(arr);
+console.log(arr);*/
+
+/*class Printer {
+    constructor(brand, coulors) {
+        this.#setUpPrinter(brand, coulors);
+    }
+
+    #setUpPrinter(brand, coulors) {
+        this.brand = brand;
+        this.coulors = coulors;
+    }
+}
+
+const device = new Printer("HP", ["Red", "Green", "Blue"]);
+console.log(device);*/
+
+class Utilities {
+    static camelCase(str) {
+        if (typeof str == "string") {
+            var index;
+            str = str.toLowerCase();
+            while(str.includes(" ")) {
+                index = str.search(" ");
+                str = str.slice(0, index) + str.charAt(index + 1).toUpperCase() + str.slice(index + 2);
+            }
+            return str;
+        } else {
+            console.log("not a string");
+        }
+    }
+}
+
+console.log(Utilities.camelCase("he llo tH  Ere"));
+const utility = new Utilities();
+console.log(utility.camelCase("wo w"));
